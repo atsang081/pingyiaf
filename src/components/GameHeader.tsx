@@ -46,7 +46,7 @@ export const GameHeader = ({ score, level, lives, onBack }: GameHeaderProps) => 
             Lv {level.level}
           </div>
           <div className="text-xs md:text-sm text-muted-foreground hidden md:block">
-            {level.nameChinese}
+            {level.name}
           </div>
         </div>
       </div>

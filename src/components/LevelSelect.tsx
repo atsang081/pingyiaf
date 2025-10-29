@@ -56,7 +56,7 @@ export const LevelSelect = ({ onSelectLevel, onBack, unlockedLevels, levelStars 
                       Level {level.level}
                     </div>
                     <div className="text-base md:text-2xl font-semibold text-secondary mb-1 md:mb-2">
-                      {level.nameChinese}
+                      {level.name}
                     </div>
                     <div className="text-sm md:text-lg text-muted-foreground mb-2 md:mb-4">
                       {level.description}

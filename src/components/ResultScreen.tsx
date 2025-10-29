@@ -32,7 +32,7 @@ export const ResultScreen = ({
             LEVEL COMPLETE!
           </h1>
           <h2 className="text-xl md:text-3xl font-bold text-secondary">
-            {level.nameChinese}
+            {level.name}
           </h2>
         </div>
 
