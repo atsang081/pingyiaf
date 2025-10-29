@@ -39,7 +39,7 @@ export interface LevelConfig {
 export const LEVEL_CONFIGS: LevelConfig[] = [
   {
     level: 1,
-    name: "Training",
+    name: "New Joiner",
     nameChinese: "新手训练",
     characterCount: 5,
     speed: 10,
