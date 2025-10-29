@@ -65,10 +65,6 @@ export const PracticeMode = ({ onBack }: PracticeModeProps) => {
 
   const handleShowAnswer = () => {
     setShowAnswer(true);
-    toast({
-      title: "Answer revealed! 📖",
-      description: `${currentCharacter.character} = ${currentCharacter.pinyin}`,
-    });
   };
 
   if (!currentCharacter) return null;
