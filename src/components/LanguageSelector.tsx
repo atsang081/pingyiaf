@@ -17,7 +17,7 @@ export const LanguageSelector = () => {
     >
       <Languages className="w-4 h-4 md:w-5 md:h-5" />
       <span className="text-sm md:text-base font-semibold">
-        {language === 'en' ? 'English' : '繁體中文'}
+        {language === 'en' ? '繁體中文' : 'English'}
       </span>
     </Button>
   );
