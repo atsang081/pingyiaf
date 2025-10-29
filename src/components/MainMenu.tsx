@@ -18,7 +18,7 @@ export const MainMenu = ({ onStartGame, onPracticeMode, onViewStickers }: MainMe
             PINYIN AIR FORCE
           </h1>
           <h2 className="text-2xl md:text-4xl font-bold text-secondary">
-            汉字大战
+            漢字大戰
           </h2>
           <p className="text-sm md:text-xl text-muted-foreground mt-2 md:mt-4">
             Defend your castle by typing pinyin! 🏰
