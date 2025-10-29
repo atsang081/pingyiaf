@@ -38,7 +38,7 @@ export const MainMenu = ({ onStartGame, onPracticeMode, onViewStickers }: MainMe
           <Button
             onClick={onPracticeMode}
             variant="outline"
-            className="w-full h-12 md:h-16 text-lg md:text-2xl rounded-xl md:rounded-2xl border-2 hover:bg-secondary/10"
+            className="w-full h-12 md:h-16 text-lg md:text-2xl rounded-xl md:rounded-2xl border-2 bg-yellow-50 hover:bg-yellow-100"
           >
             <BookOpen className="w-5 h-5 md:w-8 md:h-8 mr-2 md:mr-3" />
             PRACTICE MODE
