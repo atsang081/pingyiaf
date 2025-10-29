@@ -91,9 +91,6 @@ export const PracticeMode = ({ onBack }: PracticeModeProps) => {
               <h2 className="text-base md:text-xl font-bold text-primary">
                 Practice Mode 📚
               </h2>
-              <p className="text-xs md:text-sm text-muted-foreground">
-                Take your time - no pressure!
-              </p>
             </div>
 
             <div className="bg-primary/10 px-2 md:px-3 py-1 md:py-1.5 rounded-lg">
