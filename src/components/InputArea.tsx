@@ -48,10 +48,6 @@ export const InputArea = ({ onSubmit, currentCharacter, attemptCount, disabled }
 
   return (
     <div className="bg-card rounded-xl md:rounded-2xl p-4 md:p-6 shadow-lg border-2 border-primary/20">
-      <div className="text-base md:text-xl font-semibold mb-3 md:mb-4 text-center">
-        💬 Type the pinyin:
-      </div>
-      
       <form onSubmit={handleSubmit} className="space-y-3 md:space-y-4">
         <Input
           ref={inputRef}
