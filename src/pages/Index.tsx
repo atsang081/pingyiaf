@@ -221,31 +221,29 @@ const Index = () => {
               onBack={() => setScreen("level-select")}
             />
 
+            <ProgressBar
+              current={gameState.correctCount}
+              total={gameState.totalCharacters}
+            />
+
             <GameArea
               characters={gameState.charactersInGame}
               onReachBase={handleReachBase}
             />
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-              <InputArea
-                onSubmit={handleSubmit}
-                currentCharacter={
-                  gameState.charactersInGame[0]
-                    ? {
-                        character: gameState.charactersInGame[0].character,
-                        pinyin: gameState.charactersInGame[0].pinyin,
-                      }
-                    : null
-                }
-                attemptCount={currentAttemptCount}
-                disabled={!gameState.isGameActive || lives <= 0}
-              />
-
-              <ProgressBar
-                current={gameState.correctCount}
-                total={gameState.totalCharacters}
-              />
-            </div>
+            <InputArea
+              onSubmit={handleSubmit}
+              currentCharacter={
+                gameState.charactersInGame[0]
+                  ? {
+                      character: gameState.charactersInGame[0].character,
+                      pinyin: gameState.charactersInGame[0].pinyin,
+                    }
+                  : null
+              }
+              attemptCount={currentAttemptCount}
+              disabled={!gameState.isGameActive || lives <= 0}
+            />
           </div>
         </div>
       )}
