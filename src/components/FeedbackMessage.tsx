@@ -11,7 +11,7 @@ export const FeedbackMessage = ({ message, emoji, type, onComplete }: FeedbackMe
   useEffect(() => {
     const timer = setTimeout(() => {
       onComplete?.();
-    }, 2000);
+    }, 1000);
 
     return () => clearTimeout(timer);
   }, [onComplete]);
