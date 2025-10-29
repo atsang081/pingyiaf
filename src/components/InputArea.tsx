@@ -54,6 +54,11 @@ export const InputArea = ({ onSubmit, currentCharacter, attemptCount, disabled }
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === ' ') {
+              e.preventDefault();
+            }
+          }}
           disabled={disabled}
           placeholder="Type here..."
           className="text-xl md:text-2xl text-center h-12 md:h-14 rounded-xl border-2 border-primary/30 focus:border-primary"
