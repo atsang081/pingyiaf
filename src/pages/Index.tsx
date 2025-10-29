@@ -32,12 +32,27 @@ const Index = () => {
   });
   const [lives, setLives] = useState(3);
   const [feedback, setFeedback] = useState<{ message: string; emoji: string; type: "success" | "error" } | null>(null);
-  const [unlockedLevels, setUnlockedLevels] = useState(1);
-  const [levelStars, setLevelStars] = useState<{ [key: number]: number }>({});
+  const [unlockedLevels, setUnlockedLevels] = useState(() => {
+    const stored = localStorage.getItem("unlockedLevels");
+    return stored ? parseInt(stored) : 1;
+  });
+  const [levelStars, setLevelStars] = useState<{ [key: number]: number }>(() => {
+    const stored = localStorage.getItem("levelStars");
+    return stored ? JSON.parse(stored) : {};
+  });
   const [levelCharacters, setLevelCharacters] = useState<Character[]>([]);
   const [currentAttemptCount, setCurrentAttemptCount] = useState(0);
   const { toast } = useToast();
   const { t } = useLanguage();
+
+  // Persist unlocked levels and stars to localStorage
+  useEffect(() => {
+    localStorage.setItem("unlockedLevels", unlockedLevels.toString());
+  }, [unlockedLevels]);
+
+  useEffect(() => {
+    localStorage.setItem("levelStars", JSON.stringify(levelStars));
+  }, [levelStars]);
 
   // Initialize level characters
   const initializeLevelCharacters = useCallback((level: number) => {
@@ -201,10 +216,17 @@ const Index = () => {
       date: new Date().toISOString()
     };
 
+    // Save game record
     const stored = localStorage.getItem("gameRecords");
     const records = stored ? JSON.parse(stored) : [];
     records.push(record);
     localStorage.setItem("gameRecords", JSON.stringify(records));
+
+    // Update level stars (keep best stars)
+    setLevelStars(prev => ({
+      ...prev,
+      [level]: Math.max(prev[level] || 0, stars)
+    }));
   };
 
   const { accuracy } = calculateResults();
