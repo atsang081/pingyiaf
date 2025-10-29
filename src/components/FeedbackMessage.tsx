@@ -18,26 +18,28 @@ export const FeedbackMessage = ({ message, emoji, type, onComplete }: FeedbackMe
 
   return (
     <div
-      className={`fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 animate-bounce-in ${
+      className={`fixed top-4 right-4 md:top-6 md:right-6 z-50 animate-slide-in ${
         type === "success" ? "bg-success" : "bg-destructive"
-      } text-white px-4 py-3 md:px-6 md:py-4 rounded-xl md:rounded-2xl shadow-2xl text-center max-w-[80vw]`}
+      } text-white px-3 py-2 md:px-4 md:py-3 rounded-xl shadow-2xl text-center`}
     >
-      <div className="text-3xl md:text-5xl mb-1 md:mb-2">{emoji}</div>
-      <div className="text-xl md:text-2xl font-bold">{message}</div>
+      <div className="flex items-center gap-2">
+        <div className="text-2xl md:text-3xl">{emoji}</div>
+        <div className="text-base md:text-xl font-bold">{message}</div>
+      </div>
       
       {type === "success" && (
         <div className="absolute inset-0 -z-10">
-          {Array.from({ length: 12 }).map((_, i) => (
+          {Array.from({ length: 8 }).map((_, i) => (
             <div
               key={i}
-              className="absolute text-lg md:text-2xl animate-confetti"
+              className="absolute text-sm md:text-lg animate-confetti"
               style={{
                 left: `${Math.random() * 100}%`,
-                top: `-20px`,
-                animationDelay: `${Math.random() * 0.3}s`,
+                top: `-10px`,
+                animationDelay: `${Math.random() * 0.2}s`,
               }}
             >
-              {["🎉", "⭐", "✨", "🌟"][Math.floor(Math.random() * 4)]}
+              {["🎉", "⭐", "✨"][Math.floor(Math.random() * 3)]}
             </div>
           ))}
         </div>
