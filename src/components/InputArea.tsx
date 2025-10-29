@@ -9,9 +9,11 @@ interface InputAreaProps {
   currentCharacter: { character: string; pinyin: string } | null;
   attemptCount: number;
   disabled: boolean;
+  practiceMode?: boolean;
+  onShowAnswer?: () => void;
 }
 
-export const InputArea = ({ onSubmit, currentCharacter, attemptCount, disabled }: InputAreaProps) => {
+export const InputArea = ({ onSubmit, currentCharacter, attemptCount, disabled, practiceMode = false, onShowAnswer }: InputAreaProps) => {
   const [input, setInput] = useState("");
   const [hint, setHint] = useState<string | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -91,6 +93,18 @@ export const InputArea = ({ onSubmit, currentCharacter, attemptCount, disabled }
             <Volume2 className="w-4 h-4 md:w-5 md:h-5 md:mr-2" />
             <span className="hidden md:inline">Hear It</span>
           </Button>
+          {practiceMode && onShowAnswer && (
+            <Button
+              type="button"
+              variant="outline"
+              onClick={onShowAnswer}
+              disabled={disabled || !currentCharacter}
+              className="flex-1 h-10 md:h-12 text-sm md:text-lg rounded-xl"
+            >
+              <span className="text-sm md:text-lg">📖</span>
+              <span className="hidden md:inline md:ml-2">Answer</span>
+            </Button>
+          )}
         </div>
 
         <Button

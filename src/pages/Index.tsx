@@ -8,6 +8,7 @@ import { ProgressBar } from "@/components/ProgressBar";
 import { FeedbackMessage } from "@/components/FeedbackMessage";
 import { ResultScreen } from "@/components/ResultScreen";
 import { Performance } from "@/components/Performance";
+import { PracticeMode } from "@/components/PracticeMode";
 import { Character, CharacterInGame, GameState, LEVEL_CONFIGS } from "@/types/game";
 import { calculateScore, validatePinyin, shuffleArray, calculateStars } from "@/utils/gameUtils";
 import { useToast } from "@/hooks/use-toast";
@@ -211,9 +212,7 @@ const Index = () => {
       {screen === "menu" && (
         <MainMenu
           onStartGame={() => setScreen("level-select")}
-          onPracticeMode={() => {
-            toast({ title: "Practice Mode Coming Soon! 📚" });
-          }}
+          onPracticeMode={() => setScreen("practice")}
           onViewStickers={() => setScreen("performance")}
         />
       )}
@@ -285,6 +284,10 @@ const Index = () => {
             setScreen("menu");
           }}
         />
+      )}
+
+      {screen === "practice" && (
+        <PracticeMode onBack={() => setScreen("menu")} />
       )}
 
       {screen === "performance" && (
