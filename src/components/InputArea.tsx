@@ -36,7 +36,7 @@ export const InputArea = ({ onSubmit, currentCharacter, attemptCount, disabled, 
 
   const handleAudio = () => {
     if (currentCharacter && 'speechSynthesis' in window) {
-      const utterance = new SpeechSynthesisUtterance(currentCharacter.pinyin);
+      const utterance = new SpeechSynthesisUtterance(currentCharacter.character);
       utterance.lang = 'zh-CN';
       utterance.rate = 0.5;
       utterance.pitch = 1.0;
