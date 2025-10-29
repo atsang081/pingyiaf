@@ -18,7 +18,7 @@ export const FeedbackMessage = ({ message, emoji, type, onComplete }: FeedbackMe
 
   return (
     <div
-      className={`fixed top-4 right-4 md:top-6 md:right-6 z-50 animate-slide-in ${
+      className={`fixed top-1/2 -translate-y-1/2 right-4 md:right-6 z-50 animate-slide-in ${
         type === "success" ? "bg-success" : "bg-destructive"
       } text-white px-3 py-2 md:px-4 md:py-3 rounded-xl shadow-2xl text-center`}
     >
