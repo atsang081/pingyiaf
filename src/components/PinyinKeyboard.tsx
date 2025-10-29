@@ -25,7 +25,7 @@ export const PinyinKeyboard = ({ onKeyPress, onBackspace, disabled = false }: Pi
               variant="outline"
               onClick={() => onKeyPress(key)}
               disabled={disabled}
-              className="h-9 min-w-[32px] px-2 text-base font-semibold rounded-md bg-background/80 hover:bg-primary/10 active:bg-primary/20 transition-colors"
+              className="h-12 min-w-[44px] px-3 text-lg font-semibold rounded-md bg-background/80 hover:bg-primary/10 active:bg-primary/20 transition-colors"
             >
               {key}
             </Button>
@@ -36,9 +36,9 @@ export const PinyinKeyboard = ({ onKeyPress, onBackspace, disabled = false }: Pi
               variant="outline"
               onClick={onBackspace}
               disabled={disabled}
-              className="h-9 min-w-[32px] px-2 rounded-md bg-background/80 hover:bg-destructive/10 active:bg-destructive/20 transition-colors"
+              className="h-12 min-w-[44px] px-3 rounded-md bg-background/80 hover:bg-destructive/10 active:bg-destructive/20 transition-colors"
             >
-              <Delete className="w-4 h-4" />
+              <Delete className="w-5 h-5" />
             </Button>
           )}
         </div>
