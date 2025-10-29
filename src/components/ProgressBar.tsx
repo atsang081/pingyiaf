@@ -7,11 +7,11 @@ interface ProgressBarProps {
 
 export const ProgressBar = ({ current, total }: ProgressBarProps) => {
   return (
-    <div className="flex gap-1 md:gap-2 justify-center">
+    <div className="flex gap-0.5 md:gap-1 justify-center flex-shrink-0">
       {Array.from({ length: total }).map((_, i) => (
         <Star
           key={i}
-          className={`w-5 h-5 md:w-8 md:h-8 ${
+          className={`w-3 h-3 md:w-5 md:h-5 ${
             i < current
               ? "fill-accent text-accent"
               : "fill-muted text-muted"

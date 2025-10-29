@@ -227,8 +227,8 @@ const Index = () => {
       )}
 
       {screen === "game" && (
-        <div className="min-h-screen p-3 md:p-8">
-          <div className="max-w-6xl mx-auto space-y-4 md:space-y-6">
+        <div className="h-screen flex flex-col p-2 md:p-4">
+          <div className="flex-1 flex flex-col max-w-6xl mx-auto w-full gap-2 md:gap-3">
             <GameHeader
               score={gameState.score}
               level={LEVEL_CONFIGS[gameState.currentLevel - 1]}

@@ -74,30 +74,30 @@ export const PracticeMode = ({ onBack }: PracticeModeProps) => {
   if (!currentCharacter) return null;
 
   return (
-    <div className="min-h-screen p-3 md:p-8">
-      <div className="max-w-6xl mx-auto space-y-4 md:space-y-6">
+    <div className="h-screen flex flex-col p-2 md:p-4">
+      <div className="flex-1 flex flex-col max-w-6xl mx-auto w-full gap-2 md:gap-3">
         {/* Header */}
-        <div className="bg-card rounded-xl md:rounded-2xl p-4 md:p-6 shadow-lg border-2 border-primary/20">
+        <div className="bg-card rounded-lg md:rounded-xl p-2 md:p-3 shadow-lg border border-primary/20 flex-shrink-0">
           <div className="flex items-center justify-between">
             <Button
               variant="ghost"
               onClick={onBack}
-              className="h-10 md:h-12 px-3 md:px-4 rounded-xl"
+              className="h-8 md:h-10 px-2 md:px-3 rounded-lg"
             >
-              <ArrowLeft className="w-5 h-5 md:w-6 md:h-6" />
+              <ArrowLeft className="w-4 h-4 md:w-5 md:h-5" />
             </Button>
 
             <div className="text-center flex-1">
-              <h2 className="text-xl md:text-2xl font-bold text-primary">
+              <h2 className="text-base md:text-xl font-bold text-primary">
                 Practice Mode 📚
               </h2>
-              <p className="text-sm md:text-base text-muted-foreground">
+              <p className="text-xs md:text-sm text-muted-foreground">
                 Take your time - no pressure!
               </p>
             </div>
 
-            <div className="bg-primary/10 px-3 md:px-4 py-1.5 md:py-2 rounded-xl">
-              <span className="text-base md:text-lg font-bold text-primary">
+            <div className="bg-primary/10 px-2 md:px-3 py-1 md:py-1.5 rounded-lg">
+              <span className="text-sm md:text-base font-bold text-primary">
                 {progress} words
               </span>
             </div>
@@ -105,23 +105,23 @@ export const PracticeMode = ({ onBack }: PracticeModeProps) => {
         </div>
 
         {/* Character Display Area */}
-        <div className="relative bg-gradient-to-b from-sky-300 to-sky-100 rounded-xl md:rounded-2xl p-8 md:p-12 shadow-lg border-2 md:border-4 border-primary/30 min-h-[400px] md:min-h-[500px] flex items-center justify-center overflow-hidden">
+        <div className="relative bg-gradient-to-b from-sky-300 to-sky-100 rounded-lg md:rounded-xl p-4 md:p-6 shadow-lg border border-primary/30 flex-1 flex items-center justify-center overflow-hidden">
           {/* Clouds decoration */}
-          <div className="absolute top-4 left-10 text-4xl md:text-6xl opacity-30">☁️</div>
-          <div className="absolute top-20 right-20 text-3xl md:text-5xl opacity-30">☁️</div>
-          <div className="absolute top-32 left-1/3 text-2xl md:text-4xl opacity-30">☁️</div>
+          <div className="absolute top-2 left-4 text-2xl md:text-4xl opacity-30">☁️</div>
+          <div className="absolute top-8 right-8 text-xl md:text-3xl opacity-30">☁️</div>
+          <div className="absolute top-12 left-1/3 text-lg md:text-2xl opacity-30">☁️</div>
           
           {/* Main Character - stays in center */}
           <div className="text-center">
-            <div className="bg-yellow-400 rounded-full w-32 h-32 md:w-48 md:h-48 flex items-center justify-center shadow-2xl border-4 md:border-8 border-yellow-500 animate-float">
-              <span className="text-6xl md:text-9xl font-bold text-white">
+            <div className="bg-yellow-400 rounded-full w-24 h-24 md:w-36 md:h-36 flex items-center justify-center shadow-2xl border-4 md:border-6 border-yellow-500 animate-float">
+              <span className="text-5xl md:text-7xl font-bold text-white">
                 {currentCharacter.character}
               </span>
             </div>
             
             {showAnswer && (
-              <div className="mt-4 md:mt-6 p-3 md:p-4 bg-white/90 rounded-xl shadow-lg animate-bounce-in">
-                <span className="text-2xl md:text-4xl font-bold text-primary">
+              <div className="mt-3 md:mt-4 p-2 md:p-3 bg-white/90 rounded-lg shadow-lg animate-bounce-in">
+                <span className="text-xl md:text-3xl font-bold text-primary">
                   {currentCharacter.pinyin}
                 </span>
               </div>
@@ -129,8 +129,8 @@ export const PracticeMode = ({ onBack }: PracticeModeProps) => {
           </div>
 
           {/* Castle Base */}
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
-            <div className="text-5xl md:text-7xl animate-float">🏰</div>
+          <div className="absolute bottom-2 md:bottom-4 left-1/2 -translate-x-1/2">
+            <div className="text-3xl md:text-5xl animate-float">🏰</div>
           </div>
         </div>
 
