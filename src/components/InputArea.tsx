@@ -1,9 +1,9 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "./ui/button";
-import { Input } from "./ui/input";
 import { Lightbulb, Volume2 } from "lucide-react";
 import { getHint } from "@/utils/gameUtils";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { PinyinKeyboard } from "./PinyinKeyboard";
 
 interface InputAreaProps {
   onSubmit: (input: string) => void;
@@ -17,14 +17,7 @@ interface InputAreaProps {
 export const InputArea = ({ onSubmit, currentCharacter, attemptCount, disabled, practiceMode = false, onShowAnswer }: InputAreaProps) => {
   const [input, setInput] = useState("");
   const [hint, setHint] = useState<string | null>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
   const { t } = useLanguage();
-
-  useEffect(() => {
-    if (!disabled && inputRef.current) {
-      inputRef.current.focus();
-    }
-  }, [disabled, currentCharacter]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -50,23 +43,24 @@ export const InputArea = ({ onSubmit, currentCharacter, attemptCount, disabled, 
     }
   };
 
+  const handleKeyPress = (key: string) => {
+    if (!disabled) {
+      setInput(prev => prev + key);
+    }
+  };
+
+  const handleBackspace = () => {
+    if (!disabled) {
+      setInput(prev => prev.slice(0, -1));
+    }
+  };
+
   return (
     <div className="bg-card rounded-lg md:rounded-xl p-2 md:p-3 shadow-lg border border-primary/20 flex-shrink-0">
       <form onSubmit={handleSubmit} className="space-y-2">
-        <Input
-          ref={inputRef}
-          type="text"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === ' ') {
-              e.preventDefault();
-            }
-          }}
-          disabled={disabled}
-          placeholder={t('input.placeholder')}
-          className="text-lg md:text-xl text-center h-10 md:h-12 rounded-lg border border-primary/30 focus:border-primary"
-        />
+        <div className="text-lg md:text-xl text-center h-10 md:h-12 rounded-lg border border-primary/30 bg-background flex items-center justify-center font-semibold min-h-[2.5rem] md:min-h-[3rem]">
+          {input || <span className="text-muted-foreground">{t('input.placeholder')}</span>}
+        </div>
 
         {hint && (
           <div className="text-center p-2 bg-accent/20 rounded-lg text-sm md:text-base font-semibold animate-bounce-in">
@@ -108,6 +102,12 @@ export const InputArea = ({ onSubmit, currentCharacter, attemptCount, disabled, 
             </Button>
           )}
         </div>
+
+        <PinyinKeyboard
+          onKeyPress={handleKeyPress}
+          onBackspace={handleBackspace}
+          disabled={disabled}
+        />
 
         <Button
           type="submit"
