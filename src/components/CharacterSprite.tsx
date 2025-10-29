@@ -48,13 +48,13 @@ export const CharacterSprite = ({ character, onReachBase }: CharacterSpriteProps
     >
       {/* Balloon */}
       <div className="relative flex flex-col items-center">
-        <div className={`${balloonColor} rounded-full w-20 h-24 shadow-lg flex items-center justify-center border-4 border-white`}>
-          <span className="text-4xl font-bold text-white drop-shadow-lg">
+        <div className={`${balloonColor} rounded-full w-14 h-16 md:w-20 md:h-24 shadow-lg flex items-center justify-center border-2 md:border-4 border-white`}>
+          <span className="text-2xl md:text-4xl font-bold text-white drop-shadow-lg">
             {character.character}
           </span>
         </div>
         {/* String */}
-        <div className="w-0.5 h-8 bg-gray-400"></div>
+        <div className="w-0.5 h-4 md:h-8 bg-gray-400"></div>
       </div>
     </div>
   );

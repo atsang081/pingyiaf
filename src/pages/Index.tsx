@@ -212,8 +212,8 @@ const Index = () => {
       )}
 
       {screen === "game" && (
-        <div className="min-h-screen p-8">
-          <div className="max-w-6xl mx-auto space-y-6">
+        <div className="min-h-screen p-3 md:p-8">
+          <div className="max-w-6xl mx-auto space-y-4 md:space-y-6">
             <GameHeader
               score={gameState.score}
               level={LEVEL_CONFIGS[gameState.currentLevel - 1]}
@@ -225,7 +225,7 @@ const Index = () => {
               onReachBase={handleReachBase}
             />
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
               <InputArea
                 onSubmit={handleSubmit}
                 currentCharacter={

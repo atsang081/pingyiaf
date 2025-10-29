@@ -70,6 +70,20 @@ All colors MUST be HSL.
     @apply bg-background text-foreground font-sans;
     background: linear-gradient(180deg, hsl(200 100% 92%) 0%, hsl(210 100% 96%) 100%);
   }
+
+  /* Hide scrollbars globally */
+  * {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+  }
+  
+  *::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
+  
+  html, body {
+    overflow-x: hidden;
+  }
 }
 
 /* Game-specific animations */

@@ -9,13 +9,13 @@ interface GameHeaderProps {
 
 export const GameHeader = ({ score, level, lives }: GameHeaderProps) => {
   return (
-    <header className="bg-card/80 backdrop-blur-sm rounded-2xl p-4 shadow-lg border-2 border-primary/20">
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2">
+    <header className="bg-card/80 backdrop-blur-sm rounded-xl md:rounded-2xl p-3 md:p-4 shadow-lg border-2 border-primary/20">
+      <div className="flex items-center justify-between gap-2">
+        <div className="flex items-center gap-1 md:gap-2">
           {Array.from({ length: 3 }).map((_, i) => (
             <Heart
               key={i}
-              className={`w-8 h-8 ${
+              className={`w-5 h-5 md:w-8 md:h-8 ${
                 i < lives
                   ? "fill-destructive text-destructive"
                   : "fill-muted text-muted"
@@ -25,16 +25,16 @@ export const GameHeader = ({ score, level, lives }: GameHeaderProps) => {
         </div>
         
         <div className="text-center flex-1">
-          <div className="text-3xl font-bold text-primary">
-            Score: {score}
+          <div className="text-xl md:text-3xl font-bold text-primary">
+            {score}
           </div>
         </div>
         
         <div className="text-right">
-          <div className="text-xl font-bold text-secondary">
-            Level {level.level}
+          <div className="text-base md:text-xl font-bold text-secondary">
+            Lv {level.level}
           </div>
-          <div className="text-sm text-muted-foreground">
+          <div className="text-xs md:text-sm text-muted-foreground hidden md:block">
             {level.nameChinese}
           </div>
         </div>
