@@ -12,6 +12,7 @@ import { PracticeMode } from "@/components/PracticeMode";
 import { Character, CharacterInGame, GameState, LEVEL_CONFIGS } from "@/types/game";
 import { calculateScore, validatePinyin, shuffleArray, calculateStars } from "@/utils/gameUtils";
 import { useToast } from "@/hooks/use-toast";
+import { useLanguage } from "@/contexts/LanguageContext";
 import charactersData from "@/data/characters.json";
 
 type GameScreen = "menu" | "level-select" | "game" | "results" | "practice" | "performance";
@@ -36,6 +37,7 @@ const Index = () => {
   const [levelCharacters, setLevelCharacters] = useState<Character[]>([]);
   const [currentAttemptCount, setCurrentAttemptCount] = useState(0);
   const { toast } = useToast();
+  const { t } = useLanguage();
 
   // Initialize level characters
   const initializeLevelCharacters = useCallback((level: number) => {
@@ -92,8 +94,8 @@ const Index = () => {
       if (newLives <= 0) {
         // Game over
         toast({
-          title: "Game Over!",
-          description: "Don't worry, try again! 💪",
+          title: t('game.gameOver'),
+          description: t('game.gameOverDesc'),
         });
         setTimeout(() => {
           setScreen("level-select");

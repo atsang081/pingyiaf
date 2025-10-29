@@ -1,6 +1,7 @@
 import { Heart, ArrowLeft } from "lucide-react";
 import { LevelConfig } from "@/types/game";
 import { Button } from "./ui/button";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface GameHeaderProps {
   score: number;
@@ -10,6 +11,8 @@ interface GameHeaderProps {
 }
 
 export const GameHeader = ({ score, level, lives, onBack }: GameHeaderProps) => {
+  const { t } = useLanguage();
+  
   return (
     <header className="bg-card/80 backdrop-blur-sm rounded-lg md:rounded-xl p-2 md:p-3 shadow-lg border border-primary/20 flex-shrink-0">
       <div className="flex items-center justify-between gap-2">
@@ -43,7 +46,7 @@ export const GameHeader = ({ score, level, lives, onBack }: GameHeaderProps) => 
         
         <div className="text-right">
           <div className="text-sm md:text-lg font-bold text-secondary">
-            Lv {level.level}
+            {t('game.level')} {level.level}
           </div>
           <div className="text-xs text-muted-foreground hidden md:block">
             {level.name}

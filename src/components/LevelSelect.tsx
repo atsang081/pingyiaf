@@ -2,6 +2,7 @@ import { Button } from "./ui/button";
 import { Card } from "./ui/card";
 import { LEVEL_CONFIGS, LevelConfig } from "@/types/game";
 import { Lock, Star, ArrowLeft } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface LevelSelectProps {
   onSelectLevel: (level: number) => void;
@@ -11,6 +12,8 @@ interface LevelSelectProps {
 }
 
 export const LevelSelect = ({ onSelectLevel, onBack, unlockedLevels, levelStars }: LevelSelectProps) => {
+  const { t } = useLanguage();
+  
   return (
     <div className="min-h-screen p-4 md:p-8">
       <div className="max-w-6xl mx-auto">
@@ -22,9 +25,9 @@ export const LevelSelect = ({ onSelectLevel, onBack, unlockedLevels, levelStars 
             className="rounded-xl text-sm md:text-base h-9 md:h-10"
           >
             <ArrowLeft className="w-4 h-4 md:w-5 md:h-5 mr-1 md:mr-2" />
-            Back
+            {t('levelSelect.back')}
           </Button>
-          <h1 className="text-2xl md:text-5xl font-bold text-primary">Choose Level</h1>
+          <h1 className="text-2xl md:text-5xl font-bold text-primary">{t('levelSelect.title')}</h1>
           <div className="w-16 md:w-24" /> {/* Spacer */}
         </div>
 
@@ -53,7 +56,7 @@ export const LevelSelect = ({ onSelectLevel, onBack, unlockedLevels, levelStars 
                   {/* Level Info */}
                   <div className="flex-1 min-w-0">
                     <div className="text-xl md:text-3xl font-bold text-primary mb-1 md:mb-2">
-                      Level {level.level}
+                      {t('levelSelect.level')} {level.level}
                     </div>
                     <div className="text-base md:text-2xl font-semibold text-secondary mb-1 md:mb-2">
                       {level.name}
@@ -64,9 +67,9 @@ export const LevelSelect = ({ onSelectLevel, onBack, unlockedLevels, levelStars 
                     
                     {/* Level Details */}
                     <div className="space-y-0.5 md:space-y-1 text-xs md:text-sm text-muted-foreground">
-                      <div>📝 {level.characterCount} chars</div>
-                      <div>⚡ {level.speed}s speed</div>
-                      <div>🎯 {level.simultaneousCharacters} at once</div>
+                      <div>📝 {level.characterCount} {t('levelSelect.chars')}</div>
+                      <div>⚡ {level.speed}{t('levelSelect.speed')}</div>
+                      <div>🎯 {level.simultaneousCharacters} {t('levelSelect.atOnce')}</div>
                     </div>
 
                     {/* Stars */}

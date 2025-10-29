@@ -2,6 +2,7 @@ import { Button } from "./ui/button";
 import { Card } from "./ui/card";
 import { ArrowLeft, Trophy, Star, Target } from "lucide-react";
 import { LEVEL_CONFIGS } from "@/types/game";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface GameRecord {
   level: number;
@@ -16,6 +17,8 @@ interface PerformanceProps {
 }
 
 export const Performance = ({ onBack }: PerformanceProps) => {
+  const { t } = useLanguage();
+  
   // Get records from localStorage
   const getTopRecords = (): GameRecord[] => {
     const stored = localStorage.getItem("gameRecords");
@@ -39,18 +42,18 @@ export const Performance = ({ onBack }: PerformanceProps) => {
             className="rounded-xl text-sm md:text-base h-9 md:h-10 mb-4"
           >
             <ArrowLeft className="w-4 h-4 md:w-5 md:h-5 mr-1 md:mr-2" />
-            Back
+            {t('levelSelect.back')}
           </Button>
           
           <div className="text-center">
             <div className="flex items-center justify-center gap-2 md:gap-3 mb-2">
               <Trophy className="w-8 h-8 md:w-12 md:h-12 text-accent" />
               <h1 className="text-3xl md:text-5xl font-bold text-primary">
-                Top Performance
+                {t('performance.title')}
               </h1>
             </div>
             <p className="text-sm md:text-lg text-muted-foreground">
-              Your best game results
+              {t('performance.subtitle')}
             </p>
           </div>
         </div>
@@ -60,10 +63,10 @@ export const Performance = ({ onBack }: PerformanceProps) => {
           <Card className="p-8 md:p-12 text-center">
             <div className="text-6xl md:text-8xl mb-4">🎮</div>
             <h2 className="text-xl md:text-3xl font-bold text-muted-foreground mb-2">
-              No records yet!
+              {t('performance.noRecords')}
             </h2>
             <p className="text-sm md:text-lg text-muted-foreground">
-              Start playing to see your top scores here
+              {t('performance.startPlaying')}
             </p>
           </Card>
         ) : (
@@ -103,16 +106,16 @@ export const Performance = ({ onBack }: PerformanceProps) => {
                     {/* Details */}
                     <div className="flex-1 min-w-0">
                       <div className="text-base md:text-2xl font-bold text-primary mb-1">
-                        Level {record.level}: {levelConfig.name}
+                        {t('performance.level')} {record.level}: {levelConfig.name}
                       </div>
                       <div className="flex flex-wrap gap-3 md:gap-4 text-xs md:text-sm text-muted-foreground">
                         <div className="flex items-center gap-1">
                           <Trophy className="w-3 h-3 md:w-4 md:h-4" />
-                          <span className="font-semibold">{record.score} pts</span>
+                          <span className="font-semibold">{record.score} {t('performance.pts')}</span>
                         </div>
                         <div className="flex items-center gap-1">
                           <Target className="w-3 h-3 md:w-4 md:h-4" />
-                          <span>{record.accuracy.toFixed(0)}% accuracy</span>
+                          <span>{record.accuracy.toFixed(0)}% {t('performance.accuracy')}</span>
                         </div>
                         <div className="flex items-center gap-1">
                           {Array.from({ length: record.stars }).map((_, i) => (
@@ -138,13 +141,13 @@ export const Performance = ({ onBack }: PerformanceProps) => {
               variant="outline"
               className="text-destructive border-destructive hover:bg-destructive/10"
               onClick={() => {
-                if (confirm("Are you sure you want to clear all records?")) {
+                if (confirm(t('performance.confirmClear'))) {
                   localStorage.removeItem("gameRecords");
                   window.location.reload();
                 }
               }}
             >
-              Clear All Records
+              {t('performance.clearRecords')}
             </Button>
           </div>
         )}

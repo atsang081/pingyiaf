@@ -5,6 +5,7 @@ import { ArrowLeft } from "lucide-react";
 import { Character } from "@/types/game";
 import { validatePinyin, shuffleArray } from "@/utils/gameUtils";
 import { useToast } from "@/hooks/use-toast";
+import { useLanguage } from "@/contexts/LanguageContext";
 import charactersData from "@/data/characters.json";
 
 interface PracticeModeProps {
@@ -17,6 +18,7 @@ export const PracticeMode = ({ onBack }: PracticeModeProps) => {
   const [progress, setProgress] = useState(0);
   const [showAnswer, setShowAnswer] = useState(false);
   const { toast } = useToast();
+  const { t } = useLanguage();
 
   useEffect(() => {
     // Initialize with shuffled characters
@@ -32,7 +34,7 @@ export const PracticeMode = ({ onBack }: PracticeModeProps) => {
     if (validatePinyin(input, currentCharacter.pinyin)) {
       // Correct answer
       toast({
-        title: "Perfect! ✨",
+        title: t('practice.perfect'),
         description: `${currentCharacter.character} = ${currentCharacter.pinyin}`,
       });
       
@@ -49,16 +51,16 @@ export const PracticeMode = ({ onBack }: PracticeModeProps) => {
           setCharacters(shuffled);
           setCurrentIndex(0);
           toast({
-            title: "Great job! 🎉",
-            description: "You've practiced all characters! Starting over with a new shuffle.",
+            title: t('practice.greatJob'),
+            description: t('practice.allPracticed'),
           });
         }
       }, 1000);
     } else {
       // Wrong answer - just give feedback, character stays
       toast({
-        title: "Not quite! 🤔",
-        description: "Try again - the character will stay here until you get it!",
+        title: t('practice.notQuite'),
+        description: t('practice.tryAgain'),
       });
     }
   }, [currentCharacter, currentIndex, characters.length, toast]);
@@ -85,13 +87,13 @@ export const PracticeMode = ({ onBack }: PracticeModeProps) => {
 
             <div className="text-center flex-1">
               <h2 className="text-base md:text-xl font-bold text-primary">
-                Practice Mode 📚
+                {t('practice.title')}
               </h2>
             </div>
 
             <div className="bg-primary/10 px-2 md:px-3 py-1 md:py-1.5 rounded-lg">
               <span className="text-sm md:text-base font-bold text-primary">
-                {progress} words
+                {progress} {t('practice.words')}
               </span>
             </div>
           </div>

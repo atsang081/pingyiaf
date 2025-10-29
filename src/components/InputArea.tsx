@@ -3,6 +3,7 @@ import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Lightbulb, Volume2 } from "lucide-react";
 import { getHint } from "@/utils/gameUtils";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface InputAreaProps {
   onSubmit: (input: string) => void;
@@ -17,6 +18,7 @@ export const InputArea = ({ onSubmit, currentCharacter, attemptCount, disabled, 
   const [input, setInput] = useState("");
   const [hint, setHint] = useState<string | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const { t } = useLanguage();
 
   useEffect(() => {
     if (!disabled && inputRef.current) {
@@ -62,7 +64,7 @@ export const InputArea = ({ onSubmit, currentCharacter, attemptCount, disabled, 
             }
           }}
           disabled={disabled}
-          placeholder="Type here..."
+          placeholder={t('input.placeholder')}
           className="text-lg md:text-xl text-center h-10 md:h-12 rounded-lg border border-primary/30 focus:border-primary"
         />
 
@@ -81,7 +83,7 @@ export const InputArea = ({ onSubmit, currentCharacter, attemptCount, disabled, 
             className="flex-1 h-8 md:h-10 text-xs md:text-sm rounded-lg"
           >
             <Lightbulb className="w-3 h-3 md:w-4 md:h-4 md:mr-1" />
-            <span className="hidden md:inline">Hint</span>
+            <span className="hidden md:inline">{t('input.hint')}</span>
           </Button>
           <Button
             type="button"
@@ -91,7 +93,7 @@ export const InputArea = ({ onSubmit, currentCharacter, attemptCount, disabled, 
             className="flex-1 h-8 md:h-10 text-xs md:text-sm rounded-lg"
           >
             <Volume2 className="w-3 h-3 md:w-4 md:h-4 md:mr-1" />
-            <span className="hidden md:inline">Hear It</span>
+            <span className="hidden md:inline">{t('input.hearIt')}</span>
           </Button>
           {practiceMode && onShowAnswer && (
             <Button
@@ -102,7 +104,7 @@ export const InputArea = ({ onSubmit, currentCharacter, attemptCount, disabled, 
               className="flex-1 h-8 md:h-10 text-xs md:text-sm rounded-lg"
             >
               <span className="text-xs md:text-sm">📖</span>
-              <span className="hidden md:inline md:ml-1">Answer</span>
+              <span className="hidden md:inline md:ml-1">{t('input.answer')}</span>
             </Button>
           )}
         </div>
@@ -112,7 +114,7 @@ export const InputArea = ({ onSubmit, currentCharacter, attemptCount, disabled, 
           disabled={disabled || !input.trim()}
           className="w-full h-9 md:h-11 text-base md:text-lg rounded-lg bg-primary hover:bg-primary/90"
         >
-          Submit ✨
+          {t('input.submit')}
         </Button>
       </form>
     </div>
