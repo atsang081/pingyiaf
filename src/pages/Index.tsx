@@ -7,12 +7,13 @@ import { InputArea } from "@/components/InputArea";
 import { ProgressBar } from "@/components/ProgressBar";
 import { FeedbackMessage } from "@/components/FeedbackMessage";
 import { ResultScreen } from "@/components/ResultScreen";
+import { Performance } from "@/components/Performance";
 import { Character, CharacterInGame, GameState, LEVEL_CONFIGS } from "@/types/game";
-import { calculateScore, validatePinyin, shuffleArray } from "@/utils/gameUtils";
+import { calculateScore, validatePinyin, shuffleArray, calculateStars } from "@/utils/gameUtils";
 import { useToast } from "@/hooks/use-toast";
 import charactersData from "@/data/characters.json";
 
-type GameScreen = "menu" | "level-select" | "game" | "results" | "practice";
+type GameScreen = "menu" | "level-select" | "game" | "results" | "practice" | "performance";
 
 const Index = () => {
   const [screen, setScreen] = useState<GameScreen>("menu");
@@ -186,6 +187,23 @@ const Index = () => {
     return { accuracy };
   };
 
+  // Save game record to localStorage
+  const saveGameRecord = (level: number, score: number, accuracy: number) => {
+    const stars = calculateStars(accuracy);
+    const record = {
+      level,
+      score,
+      accuracy,
+      stars,
+      date: new Date().toISOString()
+    };
+
+    const stored = localStorage.getItem("gameRecords");
+    const records = stored ? JSON.parse(stored) : [];
+    records.push(record);
+    localStorage.setItem("gameRecords", JSON.stringify(records));
+  };
+
   const { accuracy } = calculateResults();
 
   return (
@@ -196,9 +214,7 @@ const Index = () => {
           onPracticeMode={() => {
             toast({ title: "Practice Mode Coming Soon! 📚" });
           }}
-          onViewStickers={() => {
-            toast({ title: "Sticker Album Coming Soon! 🎨" });
-          }}
+          onViewStickers={() => setScreen("performance")}
         />
       )}
 
@@ -254,14 +270,25 @@ const Index = () => {
           score={gameState.score}
           accuracy={accuracy}
           onContinue={() => {
+            saveGameRecord(gameState.currentLevel, gameState.score, accuracy);
             if (gameState.currentLevel < 4) {
               setUnlockedLevels((prev) => Math.max(prev, gameState.currentLevel + 1));
               startGame(gameState.currentLevel + 1);
             }
           }}
-          onReplay={() => startGame(gameState.currentLevel)}
-          onMainMenu={() => setScreen("menu")}
+          onReplay={() => {
+            saveGameRecord(gameState.currentLevel, gameState.score, accuracy);
+            startGame(gameState.currentLevel);
+          }}
+          onMainMenu={() => {
+            saveGameRecord(gameState.currentLevel, gameState.score, accuracy);
+            setScreen("menu");
+          }}
         />
+      )}
+
+      {screen === "performance" && (
+        <Performance onBack={() => setScreen("menu")} />
       )}
 
       {feedback && (

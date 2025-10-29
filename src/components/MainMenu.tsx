@@ -50,7 +50,7 @@ export const MainMenu = ({ onStartGame, onPracticeMode, onViewStickers }: MainMe
             className="w-full h-12 md:h-16 text-lg md:text-2xl rounded-xl md:rounded-2xl border-2 hover:bg-accent/10"
           >
             <Award className="w-5 h-5 md:w-8 md:h-8 mr-2 md:mr-3" />
-            MY STICKERS
+            PERFORMANCE
           </Button>
         </div>
 
