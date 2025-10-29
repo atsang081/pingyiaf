@@ -251,38 +251,46 @@ const Index = () => {
       )}
 
       {screen === "game" && (
-        <div className="h-screen flex flex-col p-2 md:p-4">
-          <div className="flex-1 flex flex-col max-w-6xl mx-auto w-full gap-2 md:gap-3">
-            <GameHeader
-              score={gameState.score}
-              level={LEVEL_CONFIGS[gameState.currentLevel - 1]}
-              lives={lives}
-              onBack={() => setScreen("level-select")}
-            />
+        <div className="h-screen flex flex-col overflow-hidden p-2">
+          <div className="flex-1 flex flex-col max-w-6xl mx-auto w-full gap-1.5 min-h-0">
+            <div className="flex-shrink-0">
+              <GameHeader
+                score={gameState.score}
+                level={LEVEL_CONFIGS[gameState.currentLevel - 1]}
+                lives={lives}
+                onBack={() => setScreen("level-select")}
+              />
+            </div>
 
-            <ProgressBar
-              current={gameState.correctCount}
-              total={gameState.totalCharacters}
-            />
+            <div className="flex-shrink-0">
+              <ProgressBar
+                current={gameState.correctCount}
+                total={gameState.totalCharacters}
+              />
+            </div>
 
-            <GameArea
-              characters={gameState.charactersInGame}
-              onReachBase={handleReachBase}
-            />
+            <div className="flex-1 min-h-0">
+              <GameArea
+                characters={gameState.charactersInGame}
+                onReachBase={handleReachBase}
+              />
+            </div>
 
-            <InputArea
-              onSubmit={handleSubmit}
-              currentCharacter={
-                gameState.charactersInGame[0]
-                  ? {
-                      character: gameState.charactersInGame[0].character,
-                      pinyin: gameState.charactersInGame[0].pinyin,
-                    }
-                  : null
-              }
-              attemptCount={currentAttemptCount}
-              disabled={!gameState.isGameActive || lives <= 0}
-            />
+            <div className="flex-shrink-0">
+              <InputArea
+                onSubmit={handleSubmit}
+                currentCharacter={
+                  gameState.charactersInGame[0]
+                    ? {
+                        character: gameState.charactersInGame[0].character,
+                        pinyin: gameState.charactersInGame[0].pinyin,
+                      }
+                    : null
+                }
+                attemptCount={currentAttemptCount}
+                disabled={!gameState.isGameActive || lives <= 0}
+              />
+            </div>
           </div>
         </div>
       )}
