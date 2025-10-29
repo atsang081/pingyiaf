@@ -218,6 +218,7 @@ const Index = () => {
               score={gameState.score}
               level={LEVEL_CONFIGS[gameState.currentLevel - 1]}
               lives={lives}
+              onBack={() => setScreen("level-select")}
             />
 
             <GameArea

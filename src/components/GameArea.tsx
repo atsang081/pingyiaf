@@ -26,10 +26,7 @@ export const GameArea = ({ characters, onReachBase }: GameAreaProps) => {
       {/* Castle Base */}
       <div className="absolute bottom-4 md:bottom-8 left-1/2 -translate-x-1/2">
         <div className="text-center">
-          <div className="text-4xl md:text-7xl mb-1 md:mb-2 animate-float">🏰</div>
-          <div className="text-xs md:text-2xl font-bold text-white drop-shadow-lg bg-primary/80 px-3 py-1 md:px-6 md:py-2 rounded-full">
-            YOUR BASE
-          </div>
+          <div className="text-4xl md:text-7xl animate-float">🏰</div>
         </div>
       </div>
     </div>

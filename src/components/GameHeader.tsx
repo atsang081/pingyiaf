@@ -1,16 +1,27 @@
-import { Heart } from "lucide-react";
+import { Heart, ArrowLeft } from "lucide-react";
 import { LevelConfig } from "@/types/game";
+import { Button } from "./ui/button";
 
 interface GameHeaderProps {
   score: number;
   level: LevelConfig;
   lives: number;
+  onBack: () => void;
 }
 
-export const GameHeader = ({ score, level, lives }: GameHeaderProps) => {
+export const GameHeader = ({ score, level, lives, onBack }: GameHeaderProps) => {
   return (
     <header className="bg-card/80 backdrop-blur-sm rounded-xl md:rounded-2xl p-3 md:p-4 shadow-lg border-2 border-primary/20">
       <div className="flex items-center justify-between gap-2">
+        <Button
+          onClick={onBack}
+          variant="outline"
+          size="sm"
+          className="rounded-lg h-8 w-8 md:h-10 md:w-10 p-0"
+        >
+          <ArrowLeft className="w-4 h-4 md:w-5 md:h-5" />
+        </Button>
+
         <div className="flex items-center gap-1 md:gap-2">
           {Array.from({ length: 3 }).map((_, i) => (
             <Heart
