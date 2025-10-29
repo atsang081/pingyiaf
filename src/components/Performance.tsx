@@ -32,20 +32,27 @@ export const Performance = ({ onBack }: PerformanceProps) => {
     <div className="min-h-screen p-4 md:p-8">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
-        <div className="flex items-center justify-between mb-6 md:mb-8">
+        <div className="mb-6 md:mb-8">
           <Button
             onClick={onBack}
             variant="outline"
-            className="rounded-xl text-sm md:text-base h-9 md:h-10"
+            className="rounded-xl text-sm md:text-base h-9 md:h-10 mb-4"
           >
             <ArrowLeft className="w-4 h-4 md:w-5 md:h-5 mr-1 md:mr-2" />
             Back
           </Button>
-          <h1 className="text-2xl md:text-5xl font-bold text-primary flex items-center gap-2 md:gap-3">
-            <Trophy className="w-6 h-6 md:w-10 md:h-10" />
-            Top Performance
-          </h1>
-          <div className="w-16 md:w-24" /> {/* Spacer */}
+          
+          <div className="text-center">
+            <div className="flex items-center justify-center gap-2 md:gap-3 mb-2">
+              <Trophy className="w-8 h-8 md:w-12 md:h-12 text-accent" />
+              <h1 className="text-3xl md:text-5xl font-bold text-primary">
+                Top Performance
+              </h1>
+            </div>
+            <p className="text-sm md:text-lg text-muted-foreground">
+              Your best game results
+            </p>
+          </div>
         </div>
 
         {/* Records List */}
