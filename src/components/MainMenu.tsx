@@ -69,6 +69,33 @@ export const MainMenu = ({ onStartGame, onPracticeMode, onViewStickers }: MainMe
         <div className="flex justify-center mt-6 md:mt-8">
           <LanguageSelector />
         </div>
+
+        {/* Footer */}
+        <div className="mt-8 md:mt-12 pt-6 border-t border-border/50 text-center space-y-2">
+          <p className="text-sm text-muted-foreground">
+            For inquiries & Feedback:{" "}
+            <a 
+              href="mailto:cs@lazydads.net" 
+              className="text-primary hover:underline"
+            >
+              cs@lazydads.net
+            </a>
+          </p>
+          <p className="text-sm text-muted-foreground">
+            Read our{" "}
+            <a 
+              href="https://lazydads.net/disclaimers" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-primary hover:underline"
+            >
+              disclaimers
+            </a>
+          </p>
+          <p className="text-xs text-muted-foreground">
+            © 2025 Lazy Dads. All rights reserved.
+          </p>
+        </div>
       </div>
     </div>
   );
