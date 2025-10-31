@@ -1,5 +1,6 @@
 import { CharacterSprite } from "./CharacterSprite";
 import { CharacterInGame } from "@/types/game";
+import airplaneIcon from "@/assets/airplane-icon.png";
 
 interface GameAreaProps {
   characters: CharacterInGame[];
@@ -23,10 +24,14 @@ export const GameArea = ({ characters, onReachBase }: GameAreaProps) => {
         />
       ))}
       
-      {/* Castle Base */}
+      {/* Airplane Base */}
       <div className="absolute bottom-2 md:bottom-4 left-1/2 -translate-x-1/2">
         <div className="text-center">
-          <div className="text-3xl md:text-5xl animate-float">🏰</div>
+          <img 
+            src={airplaneIcon} 
+            alt="Airplane" 
+            className="w-12 h-12 md:w-16 md:h-16 animate-float"
+          />
         </div>
       </div>
     </div>
