@@ -13,7 +13,7 @@ const translations = {
     // Main Menu
     'menu.title': 'PINYIN AIR FORCE',
     'menu.subtitle': 'Character Battle',
-    'menu.description': 'Defend your castle by typing pinyin! 🏰',
+    'menu.description': 'Defend your base by typing pinyin! ✈️',
     'menu.startPlaying': 'START PLAYING!',
     'menu.practiceMode': 'PRACTICE MODE',
     'menu.performance': 'PERFORMANCE',
@@ -79,7 +79,7 @@ const translations = {
     // Main Menu
     'menu.title': '拼音空軍',
     'menu.subtitle': '漢字大作戰',
-    'menu.description': '輸入拼音來保衛你的城堡！🏰',
+    'menu.description': '輸入拼音來保衛你的基地！✈️',
     'menu.startPlaying': '開始遊戲！',
     'menu.practiceMode': '練習模式',
     'menu.performance': '成績紀錄',

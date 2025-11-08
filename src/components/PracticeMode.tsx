@@ -125,7 +125,7 @@ export const PracticeMode = ({ onBack }: PracticeModeProps) => {
 
           {/* Castle Base */}
           <div className="absolute bottom-2 md:bottom-4 left-1/2 -translate-x-1/2">
-            <div className="text-3xl md:text-5xl animate-float">🏰</div>
+            <div className="text-3xl md:text-5xl animate-float">✈️</div>
           </div>
         </div>
 
