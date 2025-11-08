@@ -73,27 +73,19 @@ export const MainMenu = ({ onStartGame, onPracticeMode, onViewStickers }: MainMe
         {/* Footer */}
         <div className="mt-8 md:mt-12 pt-6 border-t border-border/50 text-center space-y-2">
           <p className="text-sm text-muted-foreground">
-            For inquiries & Feedback:{" "}
+            {t('footer.feedback')}{" "}
             <a 
-              href="mailto:cs@lazydads.net" 
+              href="mailto:cs@bitebite.app" 
               className="text-primary hover:underline"
             >
-              cs@lazydads.net
+              cs@bitebite.app
             </a>
           </p>
           <p className="text-sm text-muted-foreground">
-            Read our{" "}
-            <a 
-              href="https://lazydads.net/disclaimers" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-primary hover:underline"
-            >
-              disclaimers
-            </a>
+            {t('footer.producer')}
           </p>
           <p className="text-xs text-muted-foreground">
-            © 2025 Lazy Dads. All rights reserved.
+            {t('footer.copyright')}
           </p>
         </div>
       </div>

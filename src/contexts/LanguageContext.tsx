@@ -74,6 +74,11 @@ const translations = {
     
     // Language
     'language.select': 'Language',
+    
+    // Footer
+    'footer.feedback': 'For inquiries & Feedback:',
+    'footer.producer': 'Produced by Merlin Advisory Solution',
+    'footer.copyright': '© 2025 All rights reserved',
   },
   'zh-TW': {
     // Main Menu
@@ -140,6 +145,11 @@ const translations = {
     
     // Language
     'language.select': '語言',
+    
+    // Footer
+    'footer.feedback': '意見回饋：',
+    'footer.producer': '由 Merlin Advisory Solution 製作',
+    'footer.copyright': '© 2025 版權所有',
   }
 };
 
