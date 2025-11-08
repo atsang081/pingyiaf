@@ -88,6 +88,18 @@ export const MainMenu = ({ onStartGame, onPracticeMode, onViewStickers }: MainMe
             {t('footer.copyright')}
           </p>
         </div>
+
+        {/* Create Your Own Games CTA */}
+        <div className="mt-8 md:mt-12 pt-6 border-t border-border/50 text-center">
+          <a 
+            href="https://lovable.dev/invite/OJ6HGUY" 
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm md:text-base text-primary hover:underline font-semibold"
+          >
+            Create your own GAMES free and no code by Lovable
+          </a>
+        </div>
       </div>
     </div>
   );
