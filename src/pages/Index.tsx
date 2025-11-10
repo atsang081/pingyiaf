@@ -251,8 +251,8 @@ const Index = () => {
       )}
 
       {screen === "game" && (
-        <div className="h-screen flex flex-col p-2 md:p-4">
-          <div className="flex-1 flex flex-col max-w-6xl mx-auto w-full gap-2 md:gap-3">
+        <div className="h-screen flex flex-col p-2 sm:p-3 md:p-4 bg-background">
+          <div className="flex-1 flex flex-col max-w-6xl mx-auto w-full gap-2 sm:gap-2.5 md:gap-3">
             <GameHeader
               score={gameState.score}
               level={LEVEL_CONFIGS[gameState.currentLevel - 1]}
@@ -265,24 +265,28 @@ const Index = () => {
               total={gameState.totalCharacters}
             />
 
-            <GameArea
-              characters={gameState.charactersInGame}
-              onReachBase={handleReachBase}
-            />
+            <div className="flex-1 flex flex-col">
+              <GameArea
+                characters={gameState.charactersInGame}
+                onReachBase={handleReachBase}
+              />
+            </div>
 
-            <InputArea
-              onSubmit={handleSubmit}
-              currentCharacter={
-                gameState.charactersInGame[0]
-                  ? {
-                      character: gameState.charactersInGame[0].character,
-                      pinyin: gameState.charactersInGame[0].pinyin,
-                    }
-                  : null
-              }
-              attemptCount={currentAttemptCount}
-              disabled={!gameState.isGameActive || lives <= 0}
-            />
+            <div className="flex-shrink-0">
+              <InputArea
+                onSubmit={handleSubmit}
+                currentCharacter={
+                  gameState.charactersInGame[0]
+                    ? {
+                        character: gameState.charactersInGame[0].character,
+                        pinyin: gameState.charactersInGame[0].pinyin,
+                      }
+                    : null
+                }
+                attemptCount={currentAttemptCount}
+                disabled={!gameState.isGameActive || lives <= 0}
+              />
+            </div>
           </div>
         </div>
       )}
