@@ -265,7 +265,7 @@ const Index = () => {
               total={gameState.totalCharacters}
             />
 
-            <div className="flex-[0.9] flex flex-col">
+            <div className="flex-[0.8] flex flex-col">
               <GameArea
                 characters={gameState.charactersInGame}
                 onReachBase={handleReachBase}
