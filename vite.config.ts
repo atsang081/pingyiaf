@@ -5,13 +5,16 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: '/',
+  base: '/pingyiaf/',
   server: {
     host: "::",
     port: 8080,
   },
   build: {
     outDir: 'dist',
+  },
+  define: {
+    'import.meta.env.VITE_GITHUB_PAGES': JSON.stringify(true),
   },
   plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
   resolve: {
