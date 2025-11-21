@@ -1,16 +1,25 @@
 import { Button } from "./ui/button";
-import { Play, BookOpen, Award } from "lucide-react";
+import { Play, BookOpen, Award, AlertCircle } from "lucide-react";
 import { LanguageSelector } from "./LanguageSelector";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useEffect, useState } from "react";
 
 interface MainMenuProps {
   onStartGame: () => void;
   onPracticeMode: () => void;
+  onIncorrectWordsPractice: () => void;
   onViewStickers: () => void;
 }
 
-export const MainMenu = ({ onStartGame, onPracticeMode, onViewStickers }: MainMenuProps) => {
+export const MainMenu = ({ onStartGame, onPracticeMode, onIncorrectWordsPractice, onViewStickers }: MainMenuProps) => {
+  const [hasIncorrectWords, setHasIncorrectWords] = useState(false);
   const { t } = useLanguage();
+
+  useEffect(() => {
+    const stored = localStorage.getItem("incorrectWords");
+    const words = stored ? JSON.parse(stored) : [];
+    setHasIncorrectWords(words.length > 0);
+  }, []);
   
   return (
     <div className="min-h-screen flex items-center justify-center p-4 md:p-8">
@@ -46,6 +55,21 @@ export const MainMenu = ({ onStartGame, onPracticeMode, onViewStickers }: MainMe
           >
             <BookOpen className="w-5 h-5 md:w-8 md:h-8 mr-2 md:mr-3" />
             {t('menu.practiceMode')}
+          </Button>
+
+          <Button
+            onClick={onIncorrectWordsPractice}
+            variant="outline"
+            className={`w-full h-12 md:h-16 text-lg md:text-2xl rounded-xl md:rounded-2xl border-2 ${
+              hasIncorrectWords
+                ? "bg-red-50 hover:bg-red-100 border-red-300"
+                : "bg-gray-50 hover:bg-gray-100 opacity-50 cursor-not-allowed"
+            }`}
+            disabled={!hasIncorrectWords}
+          >
+            <AlertCircle className="w-5 h-5 md:w-8 md:h-8 mr-2 md:mr-3" />
+            {hasIncorrectWords && <span className="absolute top-2 right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">!</span>}
+            {t('incorrectWords.button')}
           </Button>
 
           <Button

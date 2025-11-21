@@ -60,6 +60,19 @@ const translations = {
     'practice.tryAgain': 'Try again - the character will stay here until you get it!',
     'practice.greatJob': 'Great job! 🎉',
     'practice.allPracticed': "You've practiced all characters! Starting over with a new shuffle.",
+    'practice.levelComplete': 'Level Complete!',
+    
+    // Incorrect Words Practice
+    'incorrectWords.title': 'Practice Incorrect Words 📝',
+    'incorrectWords.noWords': 'No incorrect words yet!',
+    'incorrectWords.noWordsDesc': 'Play the game to add words to your practice list.',
+    'incorrectWords.complete': 'Great job!',
+    'incorrectWords.completeDesc': "You've practiced all incorrect words!",
+    'incorrectWords.button': 'Practice Incorrect Words',
+    
+    // Common UI
+    'ui.accuracy': 'Accuracy',
+    'ui.resettingCycle': 'Resetting word cycle!',
     
     // Performance
     'performance.title': 'Top Performance',
@@ -131,6 +144,19 @@ const translations = {
     'practice.tryAgain': '再試一次 - 這個字會留在這裡直到你答對為止！',
     'practice.greatJob': '做得好！🎉',
     'practice.allPracticed': '你已經練習完所有漢字！重新開始新一輪。',
+    'practice.levelComplete': '關卡完成！',
+    
+    // Incorrect Words Practice
+    'incorrectWords.title': '練習錯誤的字 📝',
+    'incorrectWords.noWords': '還沒有錯誤的字！',
+    'incorrectWords.noWordsDesc': '玩遊戲來加入練習清單中的字。',
+    'incorrectWords.complete': '做得好！',
+    'incorrectWords.completeDesc': '你已經練習完所有錯誤的字！',
+    'incorrectWords.button': '練習錯誤的字',
+    
+    // Common UI
+    'ui.accuracy': '準確度',
+    'ui.resettingCycle': '重設單字循環！',
     
     // Performance
     'performance.title': '最佳成績',

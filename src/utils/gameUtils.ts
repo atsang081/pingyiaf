@@ -63,3 +63,55 @@ export const shuffleArray = <T,>(array: T[]): T[] => {
   }
   return shuffled;
 };
+
+export const selectRandomWord = (
+  availableWords: any[],
+  wordAttempts: Map<number, any>
+): any => {
+  // Filter out words that have been answered correctly 2+ times
+  const eligibleWords = availableWords.filter(word => {
+    const attempts = wordAttempts.get(word.id);
+    return !attempts || attempts.correctCount < 2;
+  });
+
+  // If all words have been answered correctly 2+ times, reset the cycle
+  if (eligibleWords.length === 0) {
+    return availableWords[Math.floor(Math.random() * availableWords.length)];
+  }
+
+  // Return random word from eligible words
+  return eligibleWords[Math.floor(Math.random() * eligibleWords.length)];
+};
+
+export const updateWordAttempt = (
+  wordAttempts: Map<number, any>,
+  characterId: number,
+  isCorrect: boolean
+): Map<number, any> => {
+  const newMap = new Map(wordAttempts);
+  const current = newMap.get(characterId) || {
+    characterId,
+    correctCount: 0,
+    lastAttemptTime: new Date(),
+  };
+
+  if (isCorrect) {
+    current.correctCount += 1;
+  }
+  current.lastAttemptTime = new Date();
+  newMap.set(characterId, current);
+
+  return newMap;
+};
+
+export const calculateLevelAccuracy = (
+  totalCorrect: number,
+  totalAttempted: number
+): number => {
+  if (totalAttempted === 0) return 0;
+  return (totalCorrect / totalAttempted) * 100;
+};
+
+export const shouldResetLevelCycle = (accuracy: number): boolean => {
+  return accuracy >= 80;
+};

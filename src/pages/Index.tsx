@@ -9,13 +9,14 @@ import { FeedbackMessage } from "@/components/FeedbackMessage";
 import { ResultScreen } from "@/components/ResultScreen";
 import { Performance } from "@/components/Performance";
 import { PracticeMode } from "@/components/PracticeMode";
+import { IncorrectWordsPractice } from "@/components/IncorrectWordsPractice";
 import { Character, CharacterInGame, GameState, LEVEL_CONFIGS } from "@/types/game";
 import { calculateScore, validatePinyin, shuffleArray, calculateStars } from "@/utils/gameUtils";
 import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/contexts/LanguageContext";
 import charactersData from "@/data/characters.json";
 
-type GameScreen = "menu" | "level-select" | "game" | "results" | "practice" | "performance";
+type GameScreen = "menu" | "level-select" | "game" | "results" | "practice" | "incorrect-words" | "performance";
 
 const Index = () => {
   const [screen, setScreen] = useState<GameScreen>("menu");
@@ -99,6 +100,26 @@ const Index = () => {
 
   // Handle character reaching base
   const handleReachBase = useCallback((uniqueId: string) => {
+    // Find the character that reached the base
+    const reachedChar = gameState.charactersInGame.find((char) => char.uniqueId === uniqueId);
+    
+    if (reachedChar) {
+      // Save to incorrect words list
+      const stored = localStorage.getItem("incorrectWords");
+      const incorrectWords: Character[] = stored ? JSON.parse(stored) : [];
+      
+      // Check if word already exists
+      const exists = incorrectWords.some((w) => w.id === reachedChar.id);
+      if (!exists) {
+        incorrectWords.push({
+          id: reachedChar.id,
+          character: reachedChar.character,
+          pinyin: reachedChar.pinyin,
+        });
+        localStorage.setItem("incorrectWords", JSON.stringify(incorrectWords));
+      }
+    }
+    
     setGameState((prev) => ({
       ...prev,
       charactersInGame: prev.charactersInGame.filter((char) => char.uniqueId !== uniqueId),
@@ -118,7 +139,7 @@ const Index = () => {
       }
       return Math.max(0, newLives);
     });
-  }, [toast]);
+  }, [gameState.charactersInGame, toast, t]);
 
   // Handle input submission
   const handleSubmit = useCallback((input: string) => {
@@ -237,6 +258,7 @@ const Index = () => {
         <MainMenu
           onStartGame={() => setScreen("level-select")}
           onPracticeMode={() => setScreen("practice")}
+          onIncorrectWordsPractice={() => setScreen("incorrect-words")}
           onViewStickers={() => setScreen("performance")}
         />
       )}
@@ -316,6 +338,10 @@ const Index = () => {
 
       {screen === "practice" && (
         <PracticeMode onBack={() => setScreen("menu")} />
+      )}
+
+      {screen === "incorrect-words" && (
+        <IncorrectWordsPractice onBack={() => setScreen("menu")} />
       )}
 
       {screen === "performance" && (

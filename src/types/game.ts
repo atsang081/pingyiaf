@@ -4,6 +4,19 @@ export interface Character {
   pinyin: string;
 }
 
+export interface WordAttemptHistory {
+  characterId: number;
+  correctCount: number;
+  lastAttemptTime: Date;
+}
+
+export interface LevelProgress {
+  level: number;
+  totalAttempted: number;
+  totalCorrect: number;
+  wordAttempts: Map<number, WordAttemptHistory>;
+}
+
 export interface CharacterInGame extends Character {
   xPosition: number;
   yPosition: number;
